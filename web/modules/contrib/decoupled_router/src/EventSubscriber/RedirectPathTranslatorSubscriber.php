@@ -5,8 +5,10 @@ namespace Drupal\decoupled_router\EventSubscriber;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheableJsonResponse;
 use Drupal\Core\GeneratedUrl;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\decoupled_router\PathTranslatorEvent;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Event subscriber that processes a path translation with the redirect info.
@@ -46,13 +48,31 @@ class RedirectPathTranslatorSubscriber extends RouterPathTranslatorSubscriber {
     $redirects_trace = [];
     while (TRUE) {
       $destination = $this->cleanSubdirInPath($destination, $event->getRequest());
+      $path_without_prefix = $destination;
+      $langcodes = [];
+      if ($this->languageManager->isMultilingual()) {
+        $langcodes = [LanguageInterface::LANGCODE_NOT_SPECIFIED];
+        $language_negotiation_url = $this->languageManager->getNegotiator()
+          ->getNegotiationMethodInstance('language-url');
+        $router_request = Request::create($destination);
+        $langcode = $language_negotiation_url->getLangcode($router_request);
+        $language_prefixes = $this->configFactory->get('language.negotiation')->get('url.prefixes');
+        $lang_prefix = $language_prefixes[$langcode] ?? '';
+        if ($langcode && ($destination === "/$lang_prefix" || strpos($destination, "/$lang_prefix/") === 0)) {
+          $langcodes[] = $langcode;
+          $path_without_prefix = $language_negotiation_url->processInbound($destination, $router_request);
+        }
+      }
       // Find if there is a redirect for this path.
-      $results = $redirect_storage
+      $query = $redirect_storage
         ->getQuery()
         ->accessCheck(TRUE)
         // Redirects are stored without the leading slash :-(.
-        ->condition('redirect_source.path', ltrim($destination, '/'))
-        ->execute();
+        ->condition('redirect_source__path', ltrim($path_without_prefix, '/'));
+      if (!empty($langcodes)) {
+        $query->condition('language', $langcodes, 'IN');
+      }
+      $results = $query->execute();
       $rid = reset($results);
       if (!$rid) {
         break;
