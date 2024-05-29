@@ -1788,3 +1788,15 @@ function claro_form_user_admin_permissions_alter(&$form, FormStateInterface $for
     }
   }
 }
+
+
+//ox
+
+/*
+ * Implements theme_preprocess_page().
+ *
+ */
+function claro_theme_preprocess_page(&$variables) {
+  // my code
+  $variables['claro_contact_title'] = theme_get_setting('claro_contact_title');
+}

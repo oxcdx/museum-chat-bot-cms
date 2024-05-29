@@ -1977,6 +1977,54 @@
             "install-path": "../../web/modules/contrib/jsonapi_resources"
         },
         {
+            "name": "drupal/jsonapi_site",
+            "version": "1.0.2",
+            "version_normalized": "1.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jsonapi_site.git",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jsonapi_site-1.0.2.zip",
+                "reference": "1.0.2",
+                "shasum": "d7d05c2aadb8206c4e6a4dab67f3d061abb23ef8"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11",
+                "drupal/key_auth": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.2",
+                    "datestamp": "1714930689",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Answer",
+                    "homepage": "https://www.drupal.org/user/239127"
+                }
+            ],
+            "description": "This module let's you read basic site and theme settings via JSON:API.",
+            "homepage": "https://www.drupal.org/project/jsonapi_site",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jsonapi_site"
+            },
+            "install-path": "../../web/modules/contrib/jsonapi_site"
+        },
+        {
             "name": "drupal/jsonapi_views",
             "version": "1.1.0",
             "version_normalized": "1.1.0.0",
@@ -2031,6 +2079,70 @@
                 "source": "https://git.drupalcode.org/project/jsonapi_views"
             },
             "install-path": "../../web/modules/contrib/jsonapi_views"
+        },
+        {
+            "name": "drupal/key_auth",
+            "version": "2.1.0",
+            "version_normalized": "2.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/key_auth.git",
+                "reference": "2.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/key_auth-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "0696410cf208628709e427d5923a028c01e8cfb4"
+            },
+            "require": {
+                "drupal/core": "^9.5 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.0",
+                    "datestamp": "1676961258",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Rajeshreeputra Pravin Dhondiba Gaikwad",
+                    "homepage": "https://www.drupal.org/u/Rajeshreeputra",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Mike Stefanello",
+                    "homepage": "https://www.drupal.org/u/mstef",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Dan Bryant",
+                    "homepage": "https://www.drupal.org/u/perfectcube",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Ganesh Suryawanshi",
+                    "homepage": "https://www.drupal.org/u/ganeshsurya11",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides simple key-based authentication on a per-user basis similar to basic_auth but without requiring usernames or passwords.",
+            "homepage": "https://www.drupal.org/project/key_auth",
+            "support": {
+                "source": "https://git.drupalcode.org/project/key_auth",
+                "issues": "https://www.drupal.org/project/issues/key_auth"
+            },
+            "install-path": "../../web/modules/contrib/key_auth"
         },
         {
             "name": "drupal/next",
